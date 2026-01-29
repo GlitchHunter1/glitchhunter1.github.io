@@ -1,37 +1,64 @@
 ---
 layout: home
-title: Home
 ---
 
-## Overview
+## Red Team Tradecraft
 
-This site documents offensive security research with emphasis on tradecraft analysis, detection considerations, and operational security decisions.
-
-The content focuses on understanding attacker methodologies from a technical perspective, analyzing detection surfaces, and evaluating operational trade-offs in real-world scenarios.
-
-## Focus Areas
-
-**Tradecraft Analysis**  
-Technical examination of offensive techniques, including implementation details, behavioral artifacts, and defensive visibility.
-
-**Detection Considerations**  
-Analysis of telemetry sources, detection opportunities, and evasion patterns from both offensive and defensive perspectives.
-
-**Operational Security**  
-Discussion of operational trade-offs, risk assessment frameworks, and decision-making processes in adversary operations.
-
-## Purpose
-
-This research is intended for security professionals, detection engineers, and red team practitioners. All content is published for educational purposes and to advance defensive capabilities.
-
-The goal is to improve organizational security posture through better understanding of adversary tradecraft and detection engineering.
-
-## Disclaimer
-
-All technical research published here is intended for defensive purposes and educational use. Techniques are documented to improve detection capabilities and inform security architecture decisions.
-
-Readers are responsible for ensuring compliance with applicable laws and organizational policies. Unauthorized access to computer systems is illegal.
+This site documents red team research and tradecraft with a focus on
+offensive security, detection visibility, and OPSEC aware decision making.
+Content emphasizes analysis and operational tradeoffs rather than tooling
+or exploit release.
 
 ---
 
-*Research notes and technical documentation by Mohammed Al Sadi.*
+## Research & Tradecraft
+
+### Redirecting the Adversary
+**Designing resilient command and control infrastructure**
+
+![C2 Infrastructure Diagram](/assets/images/c2-infra.png)
+
+An examination of modern red team infrastructure design, focusing on layered
+redirectors, NGINX and Apache reverse proxy configurations, operational tradeoffs,
+and detection considerations in real world environments.
+
+_Status: Coming Soon_
+
+---
+
+### Abusing Trust at Load Time
+**DLL sideloading as a tradecraft problem**
+
+![DLL Load Order Diagram](/assets/images/dll-sideloading.png)
+
+A tradecraft focused analysis of DLL sideloading techniques, exploring execution
+context, trust boundaries, operational reliability, and defensive visibility
+across modern Windows environments.
+
+_Status: Coming Soon_
+
+---
+
+### Inside the Process Boundary
+**Accessing LSASS in the presence of modern protections**
+
+![Process Boundary Diagram](/assets/images/lsass-boundary.png)
+
+A research driven look at LSASS access techniques, including privilege
+requirements, protection mechanisms such as PPL, and the evolving detection
+landscape surrounding credential access.
+
+_Status: Coming Soon_
+
+---
+
+### Harvesting Local Secrets
+**SAM access under modern endpoint defenses**
+
+![Credential Storage Diagram](/assets/images/sam-access.png)
+
+An exploration of local credential storage access, focusing on SAM extraction
+techniques, operational constraints imposed by modern EDR solutions, and
+defensive telemetry considerations.
+
+_Status: Coming Soon_

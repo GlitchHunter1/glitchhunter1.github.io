@@ -1,38 +1,58 @@
 ---
 layout: page
-title: Tradecraft
+title: Research & Tradecraft
 permalink: /tradecraft/
 ---
 
-## Technical Research
+## Research & Tradecraft
 
-This section contains long-form technical analysis of offensive security tradecraft, detection methodologies, and operational security considerations.
-
-Each article follows a structured approach covering technique implementation, detection artifacts, operational trade-offs, and defensive implications.
+Technical analysis of offensive security methodologies, detection engineering, and operational tradecraft. Each research entry examines techniques from both adversarial and defensive perspectives, focusing on implementation details, operational trade-offs, and detection visibility.
 
 ---
 
-## Articles
+### Redirecting the Adversary
+**Designing resilient red team command-and-control infrastructure using redirectors and reverse proxies**
 
-*Articles will be published as research is completed and documented.*
+An examination of modern red team infrastructure design, focusing on layered redirectors, NGINX and Apache reverse proxy configurations, operational tradeoffs, and detection considerations in real-world environments.
 
-### Coming Soon
-
-- Process injection techniques and detection telemetry
-- Credential access patterns and visibility gaps
-- Lateral movement tradecraft and network artifacts
-- Command and control channel analysis
+**Status:** Coming Soon
 
 ---
 
-## Article Structure
+### Abusing Trust at Load Time
+**DLL sideloading as a tradecraft problem rather than a payload problem**
 
-Technical research follows a consistent format:
+A tradecraft-focused analysis of DLL sideloading techniques, exploring execution context, trust boundaries, operational reliability, and defensive visibility across modern Windows environments.
 
-**Background**: Context and technique overview  
-**Implementation**: Technical details and variations  
-**Detection**: Artifacts, telemetry, and visibility opportunities  
-**Operational Considerations**: OPSEC trade-offs and decision points  
-**Defensive Recommendations**: Detection strategies and mitigations  
+**Status:** Coming Soon
 
-This structure ensures comprehensive coverage from both offensive and defensive perspectives.
+---
+
+### Inside the Process Boundary
+**Accessing LSASS in the presence of modern protections**
+
+A research-driven look at LSASS access techniques, including privilege requirements, protection mechanisms such as PPL, and the evolving detection landscape surrounding credential access.
+
+**Status:** Coming Soon
+
+---
+
+### Harvesting Local Secrets
+**SAM access under modern endpoint defenses**
+
+An exploration of local credential storage access, focusing on SAM extraction techniques, operational constraints imposed by modern EDR solutions, and defensive telemetry considerations.
+
+**Status:** Coming Soon
+
+---
+
+## Research Approach
+
+All research follows a structured methodology that considers:
+
+- **Technical Implementation**: Detailed analysis of technique mechanics and variations
+- **Operational Context**: Real-world applicability and reliability considerations
+- **Detection Visibility**: Telemetry sources, artifacts, and defensive opportunities
+- **Trade-off Analysis**: OPSEC considerations and decision frameworks
+
+Research is published for defensive purposes and to advance detection engineering capabilities. Full articles will be added as research is completed and documented.

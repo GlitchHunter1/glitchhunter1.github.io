@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Red Team Research & Tradecraft</title>
+    <meta name="description" content="Technical research on offensive security tradecraft, detection visibility, and operational security considerations.">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">Red Team Research</div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link active">Home</a></li>
+                <li><a href="#research" class="nav-link">Research</a></li>
+                <li><a href="about.html" class="nav-link">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Red Team Research & Tradecraft</h1>
+            <p class="hero-subtitle">Technical research on offensive security tradecraft, detection visibility, and OPSEC-aware operational tradeoffs. Documenting command and control infrastructure, Active Directory attack paths, and defensive telemetry considerations.</p>
+        </div>
+    </section>
+
+    <section class="research-section" id="research">
+        <div class="container">
+            <div class="research-grid">
+                <article class="research-card">
+                    <div class="card-image">
+                        <img src="assets/images/c2-infra-placeholder.png" alt="C2 Infrastructure" onerror="this.style.background='linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)'">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-category">RESEARCH & TRADECRAFT</span>
+                        <h3 class="card-title">Redirecting the Adversary</h3>
+                        <p class="card-description">TL;DR: Layered redirector design for command and control infrastructure. Examining NGINX and Apache reverse proxy configurations, operational tradeoffs, and detection considerations in enterprise environments.</p>
+                        <a href="posts/c2-infrastructure.html" class="card-button">Read Article</a>
+                    </div>
+                </article>
+
+                <article class="research-card">
+                    <div class="card-image">
+                        <img src="assets/images/dll-sideloading-placeholder.png" alt="DLL Sideloading" onerror="this.style.background='linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)'">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-category">RESEARCH & TRADECRAFT</span>
+                        <h3 class="card-title">Abusing Trust at Load Time</h3>
+                        <p class="card-description">TL;DR: DLL sideloading as a tradecraft problem. Exploring execution context, trust boundaries, operational reliability, and defensive visibility across modern Windows environments.</p>
+                        <a href="posts/dll-sideloading.html" class="card-button">Read Article</a>
+                    </div>
+                </article>
+
+                <article class="research-card">
+                    <div class="card-image">
+                        <img src="assets/images/lsass-boundary-placeholder.png" alt="LSASS Access" onerror="this.style.background='linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)'">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-category">RESEARCH & TRADECRAFT</span>
+                        <h3 class="card-title">Inside the Process Boundary</h3>
+                        <p class="card-description">TL;DR: LSASS access techniques in the presence of modern protections. Analyzing privilege requirements, PPL mechanisms, and the evolving detection landscape surrounding credential access.</p>
+                        <a href="posts/lsass-access.html" class="card-button">Read Article</a>
+                    </div>
+                </article>
+
+                <article class="research-card">
+                    <div class="card-image">
+                        <img src="assets/images/sam-access-placeholder.png" alt="SAM Access" onerror="this.style.background='linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)'">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-category">RESEARCH & TRADECRAFT</span>
+                        <h3 class="card-title">Harvesting Local Secrets</h3>
+                        <p class="card-description">TL;DR: SAM database access under modern endpoint defenses. Exploring extraction techniques, operational constraints imposed by EDR solutions, and defensive telemetry generation.</p>
+                        <a href="posts/sam-access.html" class="card-button">Read Article</a>
+                    </div>
+                </article>
+
+                <article class="research-card">
+                    <div class="card-image">
+                        <img src="assets/images/ad-attack-paths-placeholder.png" alt="AD Attack Paths" onerror="this.style.background='linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)'">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-category">RESEARCH & TRADECRAFT</span>
+                        <h3 class="card-title">Domain Privilege Escalation Paths</h3>
+                        <p class="card-description">TL;DR: Active Directory attack path analysis. Investigating privilege escalation vectors, ACL abuse, and delegation configurations that enable lateral movement in enterprise domains.</p>
+                        <a href="posts/ad-attack-paths.html" class="card-button">Read Article</a>
+                    </div>
+                </article>
+
+                <article class="research-card">
+                    <div class="card-image">
+                        <img src="assets/images/opsec-placeholder.png" alt="OPSEC Tradeoffs" onerror="this.style.background='linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)'">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-category">RESEARCH & TRADECRAFT</span>
+                        <h3 class="card-title">Detection Surface Analysis</h3>
+                        <p class="card-description">TL;DR: OPSEC-aware tradecraft decision making. Quantifying detection surfaces, analyzing telemetry generation, and understanding visibility tradeoffs in offensive operations.</p>
+                        <a href="posts/detection-surfaces.html" class="card-button">Read Article</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2026 Red Team Research & Tradecraft. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

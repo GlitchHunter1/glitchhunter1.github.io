@@ -34,16 +34,18 @@ The techniques discussed in this post map to the following MITRE ATT&CK entries:
 {: .prompt-warning }
 
 ```mermaid
-graph LR
-    A["Raw Shellcode<br/>(msfvenom / C2)"] -->|"RC4 Encrypt<br/>(shell-enc.py)"| B["Encrypted Payload"]
-    B -->|"Embed in loader.c"| C["Compiled EXE"]
-    C -->|"Execute on target"| D["random_delay()"]
-    D --> E["GetTargetProcess()"]
-    E -->|"CreateProcess<br/>CREATE_SUSPENDED"| F["Suspended svchost.exe"]
-    F -->|"GetDecryptionKey()<br/>XOR deobfuscate"| G["RC4 Decrypt Shellcode"]
-    G -->|"VirtualAllocEx<br/>WriteProcessMemory"| H["Shellcode in Target"]
-    H -->|"QueueUserAPC"| I["APC Queued"]
-    I -->|"ResumeThread"| J["Shellcode Executes"]
+graph TD
+    A["1. Raw Shellcode<br/>(msfvenom / C2)"] -->|"RC4 Encrypt<br/>(shell-enc.py)"| B["2. Encrypted Payload"]
+    B -->|"Embed in loader.c"| C["3. Compiled EXE"]
+    C -->|"Execute on target"| D["4. random_delay()<br/>Anti-sandbox sleep"]
+    D --> E["5. GetTargetProcess()<br/>Random process selection"]
+    E -->|"CreateProcess<br/>CREATE_SUSPENDED"| F["6. Suspended Process<br/>(svchost / dllhost / notepad)"]
+    F --> G["7. GetDecryptionKey()<br/>XOR deobfuscate + RC4 decrypt"]
+    G -->|"VirtualAllocEx<br/>WriteProcessMemory"| H["8. Shellcode Written<br/>to Target Process"]
+    H -->|"QueueUserAPC<br/>ResumeThread"| I(("9. Shellcode<br/>Executes"))
+
+    style A fill:#1a1a2e,stroke:#58a6ff,color:#c9d1d9
+    style I fill:#238636,stroke:#2ea043,color:#fff
 ```
 
 ## Understanding AV Detection Layers
@@ -668,11 +670,9 @@ This is the Early Bird moment. `QueueUserAPC` adds the shellcode address as an A
 
 The `Sleep(500)` after resuming gives the shellcode time to establish itself (for example, to set up a C2 beacon) before the loader cleans up its handles and exits.
 
-### The DLL Variants
+### The DLL Variant
 
-The repository also includes two DLL variants of the loader. The `dll.c` version wraps the same injection logic inside `DllMain`, triggered on `DLL_PROCESS_ATTACH`. It spawns a separate thread via `CreateThread` to perform the injection, preventing the loading process from blocking.
-
-The `dll-sideloading.c` variant is designed specifically for DLL sideloading scenarios. It includes additional OPSEC features: an `IsDebuggerPresent()` check, a timing-based sandbox detection routine that measures CPU execution speed using `QueryPerformanceCounter` to detect artificial acceleration, and process name checks that prevent execution inside known analysis tools (Process Monitor, Process Explorer, Wireshark, x64dbg, OllyDbg). It also exports common COM registration functions (`DllRegisterServer`, `DllUnregisterServer`) so the DLL appears legitimate to the host application and can be triggered via `regsvr32`.
+The repository also includes a DLL variant of the loader in `dll.c`. This version wraps the same injection logic inside `DllMain`, triggered on `DLL_PROCESS_ATTACH`. When the DLL is loaded by any process (via `LoadLibrary`, `regsvr32`, or as a dependency), it spawns a separate thread via `CreateThread` to perform the payload logic, preventing the loading process from blocking. The `DisableThreadLibraryCalls` call suppresses further `DLL_THREAD_ATTACH` and `DLL_THREAD_DETACH` notifications, reducing noise and preventing the injection logic from firing multiple times.
 
 ### The Generator: generate_loader.py
 
@@ -767,7 +767,7 @@ This loader sits at the intersection of payload delivery and defense evasion in 
 
 Building offensive tooling from scratch, understanding every API call, every memory protection flag, every byte of the RC4 key schedule, is what makes the difference between an operator who gets caught in the first five minutes and one who maintains access for months. Off-the-shelf frameworks have their place, but their signatures are known, their behaviors are profiled, and their IOCs are in every threat intel feed. Custom tooling, tailored to the specific engagement, remains the gold standard for mature red team operations.
 
-The full source code is available at [github.com/GlitchHunter1/Shellcode-Loader---AV-Evasion](https://github.com/GlitchHunter1/Shellcode-Loader---AV-Evasion). This is part of ongoing research. Future posts will cover indirect syscall integration, sleep obfuscation implementation, and building the DLL sideloading chain end to end.
+The full source code is available at [github.com/GlitchHunter1/Shellcode-Loader---AV-Evasion](https://github.com/GlitchHunter1/Shellcode-Loader---AV-Evasion). This is part of ongoing research. Future posts will cover indirect syscall integration, sleep obfuscation implementation, and module stomping techniques.
 
 ---
 

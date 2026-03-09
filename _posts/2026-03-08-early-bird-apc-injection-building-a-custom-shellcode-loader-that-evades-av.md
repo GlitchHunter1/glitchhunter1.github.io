@@ -670,10 +670,6 @@ This is the Early Bird moment. `QueueUserAPC` adds the shellcode address as an A
 
 The `Sleep(500)` after resuming gives the shellcode time to establish itself (for example, to set up a C2 beacon) before the loader cleans up its handles and exits.
 
-### The DLL Variant
-
-The repository also includes a DLL variant of the loader in `dll.c`. This version wraps the same injection logic inside `DllMain`, triggered on `DLL_PROCESS_ATTACH`. When the DLL is loaded by any process (via `LoadLibrary`, `regsvr32`, or as a dependency), it spawns a separate thread via `CreateThread` to perform the payload logic, preventing the loading process from blocking. The `DisableThreadLibraryCalls` call suppresses further `DLL_THREAD_ATTACH` and `DLL_THREAD_DETACH` notifications, reducing noise and preventing the injection logic from firing multiple times.
-
 ### The Generator: generate_loader.py
 
 The `generate_loader.py` script automates the entire build process. It takes a raw shellcode binary as input, encrypts it with RC4, and generates a complete `loader.c` file with the encrypted shellcode already embedded. This means an operator can go from raw shellcode to a compilable loader in a single command:
